@@ -1,0 +1,23 @@
+
+<% include ./main/header %>
+
+<% include ./main/getProduct %>
+<input type="hidden" id="id" value="<%= doc %>">
+  <script>
+
+  var id=document.getElementById("id").value;
+  console.log(id)
+
+ 
+  dbObject.collection("prodcuts").doc(id).delete().then(function () {
+          alert("deleted Successful")
+          location.replace("/admin/listproduct")
+  
+              }).catch(function (err) {
+                  alert(err.message)
+  
+              });
+  
+         
+ 
+      </script>

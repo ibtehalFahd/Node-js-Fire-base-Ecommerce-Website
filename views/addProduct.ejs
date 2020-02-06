@@ -1,0 +1,131 @@
+<% include ./main/header %>
+<% include ./main/navbar %>
+     
+<section class="main-block">
+  <div class="container addp">
+           <div class="row justify-content-center">
+                 <div class="col-md-5">
+                        <div class="styled-heading">
+                            <h2 class="title2">Add new product  </h2>
+                        </div>
+                    </div>
+             </div>
+  
+
+<div class="row ">
+  
+  <div class="col-md-12">
+      <!-- <form action="/admin/addProduct" method="post"  enctype="multipart/form-data"> -->
+
+    <select class="form-control" id="productSelect" name="cat"><option>Please Select a Product Category</option>
+      <option value="movie">kpop</option>
+      <option value="drama">Drama</option>
+      <option value="show">var show</option>
+      <option value="album">album</option>
+    </select>
+    
+ <div class="form-group">
+   <label for="productname" class="loginFormElement" >product name:</label>
+   <input class="form-control" id="productname" type="text" name="name">
+ </div>
+    
+ <div class="form-group">
+   <label for="productprice" class="loginFormElement" >Product Price</label>
+   <input class="form-control" id="productprice" type="number" name="price">
+ </div>
+   
+ <div class="form-group">
+   <label for="productcount" class="loginFormElement">Number of epsiod:</label>
+   <input class="form-control" id="productcount" type="number" name="num">
+ </div>
+
+<div class="form-group">
+<label class="control-label">Product Image</label>
+ 
+<input class="filestyle" id='productimg' data-icon="false" type="file" name="img">
+ 
+</div>
+    
+    <div class="form-group">
+      <label class="loginformelement" for="productdescription">Product Description</label>
+        <input id="productdescription" class="form-control input-lg" placeholder="Large" type="text" name="disc" >
+    </div>
+      <br>
+    <button type="submit" id="addproduct" class="btn btn-success loginFormElement">Add Product</button>
+  
+    </div>
+    
+    </div>
+  </form>
+  </div>
+
+</section>
+
+
+<script>
+       var firebaseConfig = {
+    apiKey: "AIzaSyABJiayCjHWZ3HzuVFAmIEtwznxnPhwcTY",
+    authDomain: "e-commerce-8b449.firebaseapp.com",
+    databaseURL: "https://e-commerce-8b449.firebaseio.com",
+    projectId: "e-commerce-8b449",
+    storageBucket: "e-commerce-8b449.appspot.com",
+    messagingSenderId: "780109649611",
+    appId: "1:780109649611:web:80a97448a539511b3dad4e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var dbObject=firebase.firestore();
+		var authObject=firebase.auth();
+		var storageObject=firebase.storage();
+
+var add_btn=document.getElementById("addproduct");
+var p_cat=document.getElementById("productSelect");
+var p_title=document.getElementById("productname");
+var p_price=document.getElementById("productprice");
+var p_count=document.getElementById("productcount");
+var p_description=document.getElementById("productdescription");
+
+add_btn.addEventListener("click",function () {
+
+
+
+	var product_img=document.getElementById("productimg");
+
+	var storageRef=storageObject.ref("images");
+	var task=storageRef.child(+Math.random()+product_img.files[0].name).put(product_img.files[0]);
+	task.then(function (snapshot) {
+
+		snapshot.ref.getDownloadURL().then(function (url) {
+
+			//alert(url)
+			var docRef=dbObject.collection("prodcuts").doc();
+			docRef.set({
+        name:p_title.value,
+        category:p_cat.value,
+        price:p_price.value,
+        count:p_count.value,
+        description:p_description.value,
+				product_img:url
+
+
+			}).then(function () {
+        alert("insereted Successful")
+        location.replace("/admin/addProduct")
+
+			}).catch(function (err) {
+				alert(err.message)
+
+			});
+
+		})
+
+	}).catch(function (err) {
+		console.log(err.message)
+
+	})
+
+})
+    
+    
+    </script>
+    <% include ./main/footer %>

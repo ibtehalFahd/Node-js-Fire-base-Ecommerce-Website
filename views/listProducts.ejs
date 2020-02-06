@@ -1,0 +1,75 @@
+
+<% include ./main/header %>
+<% include ./main/navbar %>
+<div class="product">
+        <section class="main-block">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5">
+                            <div class="styled-heading">
+                                <h2 class="title2" >products managment</h2>
+                            </div>
+                        </div>
+                    </div>
+    <table class="table myt">
+        <thead >
+            <tr >
+                <th>Product No.</th>	
+                <th>name</th>
+                <th>category</th>
+                <th>#epsiod</th>
+                <th>Price</th>
+                <th>disc</th>
+                <th>manage</th>
+                
+            </tr>
+            
+        </thead>
+        <tbody id="tbody">
+      
+        </tbody>
+    </table>  
+</div>
+</div>
+</section>
+<% include ./main/getProduct %>
+
+<script>
+
+ dbObject.collection("prodcuts").get().then(function (rows) {
+     var i=0
+var tbody=document.getElementById("tbody")
+rows.forEach(function (row) {
+    i++
+  var doc=row.data();
+  console.log(row.id)
+  tbody.innerHTML+="<tr><td>"+ i +"</td>"+
+         "<td>"+ doc.name +"</td>"+
+         "<td>"+ doc.category  +"</td>"+
+         " <td>"+ doc.count  +"</td>"+
+         "<td>"+ doc.price  +"</td>"+
+         "<td>"+ doc.description  +
+         "</td><td>"+
+         " <div class='form-inline'><form action='/admin/editProduct' method='post' id='editForm' class='form-inline'>"+
+        "<input type='hidden' name='id' value='"+row.id+"'>"+
+        "<input type='hidden' name='name' value='"+doc.name+"'>"+
+        "<input type='hidden' name='cat' value='"+doc.category+"'>"+
+        "<input type='hidden' name='count' value='"+doc.count+"'>"+
+        "<input type='hidden' name='price' value='"+doc.price+"'>"+
+        "<input type='hidden' name='disc' value='"+doc.description+"'>"+
+        "<button type='submit' class='btn btn-info'> <span class='ti-pencil'></span></button> </form>"+
+         "<form action='/admin/deleteProduct' method='post' id='delForm' class='form-inline'><input type='hidden' name='doc' value='"+row.id+"'><button type='submit' class='btn btn-danger'> <span class='ti-close'></span></button>  </form>"+
+         "</div></td></tr>"
+});
+
+}).catch(function (err) {
+alert(err.message)
+
+})
+function editFun() {
+   document.getElementById('editForm').submit()
+}
+function delFun() {
+   document.getElementById('delForm').submit()
+}
+</script>
+<% include ./main/footer %>

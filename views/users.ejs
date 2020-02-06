@@ -1,0 +1,69 @@
+<% include ./main/header %>
+<% include ./main/navbar %>
+<section class="main-block">
+    <div class="container addp">
+             <div class="row justify-content-center">
+                   <div class="col-md-5">
+                          <div class="styled-heading">
+                              <h2 class="title2">Manage users  </h2>
+                          </div>
+                      </div>
+               </div>
+    <div class="row ">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+            <table id="myTable">
+              <tr class="header">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>manage</th>
+              </tr>
+             <% var i=0;
+              for(var user of users ){
+                i++
+                %>
+                <tr>
+                <td><%= i %></td>
+                <td><%= user.displayName%></td>
+                <td><%= user.phoneNumber%></td>
+                <td><%= user.email%></td>
+                <td>
+                    <form action='/admin/deleteUser' method='post' id='delForm' class='form-inline'>
+                      <input type='hidden' name='uid' value='"+<%= user.userId%>+"'>
+                      <button type='submit' class='btn btn-danger'> <span class='ti-close'></span></button>
+                      </form>
+                  <!-- <button type='submit' class='btn btn-success'> <span class='ti-close'></span></button> -->
+                 </td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
+    </div>
+
+</section>
+<script>
+        function myFunction() {
+          // Declare variables 
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+        
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            } 
+          }
+        }
+        </script>
+<% include ./main/footer %>

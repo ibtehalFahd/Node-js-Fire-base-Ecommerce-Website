@@ -1,0 +1,55 @@
+
+<% include ./main/header %>
+<% include ./main/navbar %>
+<div class="product">
+        <section class="main-block">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5">
+                            <div class="styled-heading">
+                                <h2 class="title2">Cart managment</h2>
+                            </div>
+                        </div>
+                    </div>
+   <div class="container">
+    <table class="timetable_sub">
+        <thead>
+            <tr>
+                <th>Item No.</th>	
+                <th>name</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Remove</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+        <% var i=0;
+        for(var item of items ) {
+            i++; %>
+     <tr>
+            <td> <%= i%></td>
+            <td> <%= item.name%></td>
+            <td> <img src="<%= item.produtId %>" class="card-img-top pimg" alt="..." style="width: 150px;height:150px;"></td>
+            <td><input type="number" name="quan" id="quan" value=<%= item.count%> ></td>
+            <td> <%= item.price%></td>
+            <td><%= item.price*item.count%></td>
+            <td><form action='/cart/deleteProduct' method='post'  >
+                <input type='hidden' name='id'value=<%= item.id%> ><button type='submit' class='btn btn-danger'>
+                 <span class='ti-close'></span></button> 
+             </form></td>
+        </tr>
+        <%}%>
+        <tr>
+            <td colspan="4"></td>
+            <td colspan="3"><form action='/cart/deleteAll' method='post'  ><button  class='btn btn-danger' style="margin-right:15px;">Remove all</button><button  class='btn btn-info'>Order all</button></form></td>
+        </tr>
+           
+        </tbody>
+    </table>  
+</div>
+</div>
+</section>
+<% include ./main/footer %>

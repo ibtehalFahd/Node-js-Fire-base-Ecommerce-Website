@@ -1,0 +1,42 @@
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyABJiayCjHWZ3HzuVFAmIEtwznxnPhwcTY",
+    authDomain: "e-commerce-8b449.firebaseapp.com",
+    databaseURL: "https://e-commerce-8b449.firebaseio.com",
+    projectId: "e-commerce-8b449",
+    storageBucket: "e-commerce-8b449.appspot.com",
+    messagingSenderId: "780109649611",
+    appId: "1:780109649611:web:80a97448a539511b3dad4e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var dbObject=firebase.firestore();
+		var authObject=firebase.auth();
+		var storageObject=firebase.storage();
+    var data
+    var i=0;
+    dbObject.collection("prodcuts").get().then(function (rows) {
+
+            rows.forEach(function (row) {
+              var doc=row.data();
+              var row='/'+doc.category+','+doc.count+','+doc.description+','+doc.name+','+doc.price
+
+                data+=row
+              
+    
+            });
+           
+        }).catch(function (err) {
+            alert(err.message)
+
+        })
+ function getproduct(){
+    console.log(data)
+    document.getElementById('data').value=data
+    var d=document.getElementById('data').value
+   
+
+    alert(document.getElementById('data').value)
+    document.getElementById('list').submit()
+}    
+</script>

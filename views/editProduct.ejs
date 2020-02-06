@@ -1,0 +1,93 @@
+<% include ./main/header %>
+<% include ./main/navbar %>
+
+     
+<section class="main-block">
+    <div class="container addp">
+             <div class="row justify-content-center">
+                   <div class="col-md-5">
+                          <div class="styled-heading">
+                              <h2 class="title2">Edit product  </h2>
+                          </div>
+                      </div>
+               </div>
+    
+  
+  <div class="row ">
+    
+    <div class="col-md-12">
+        <!-- <form action="/admin/editproduct" method="post"  enctype="multipart/form-data"> -->
+  
+      <select class="form-control" id="productSelect" name="cat"><option><%= cat%></option>
+        <option value="movie">movie</option>
+        <option value="drama">Drama</option>
+        <option value="show">var show</option>
+        <option value="album">album</option>
+      </select>
+      
+   <div class="form-group">
+     <label for="productname" class="loginFormElement" >product name:</label>
+     <input type="hidden" id="id" value="<%= id %>">
+     <input class="form-control" id="productname" type="text" name="name" value="<%= name %>" >
+   </div>
+      
+   <div class="form-group">
+     <label for="productprice" class="loginFormElement" >Product Price</label>
+     <input class="form-control" id="productprice" type="number" name="price" value="<%= price %>">
+   </div>
+     
+   <div class="form-group">
+     <label for="productcount" class="loginFormElement">Number of epsiod:</label>
+     <input class="form-control" id="productcount" type="number" name="num" value="<%= count %>"">
+   </div>
+  
+      
+      <div class="form-group">
+        <label class="loginformelement" for="productdescription">Product Description</label>
+          <input id="productdescription" class="form-control input-lg" placeholder="Large" type="text" name="disc" value="<%= disc %>"" >
+      </div>
+        <br>
+      <button type="submit" id="editproduct" class="btn btn-success loginFormElement">edit</button>
+    
+      </div>
+      
+      </div>
+    </form>
+    </div>
+  
+  </section>
+  <% include ./main/getProduct %>
+  
+  <script>
+  var edit_btn=document.getElementById("editproduct");
+  var p_cat=document.getElementById("productSelect");
+  var p_title=document.getElementById("productname");
+  var p_price=document.getElementById("productprice");
+  var p_count=document.getElementById("productcount");
+  var id=document.getElementById("id").value;
+  console.log(id)
+  var p_description=document.getElementById("productdescription");
+  
+  
+
+
+  edit_btn.addEventListener("click",function () {
+  
+          dbObject.collection("prodcuts").doc(id).update({
+          name:p_title.value,
+          category:p_cat.value,
+          price:p_price.value,
+          count:p_count.value,
+          description:p_description.value}).then(function () {
+          alert("updated Successful")
+          location.replace("/admin/listproduct")
+  
+              }).catch(function (err) {
+                  alert(err.message)
+  
+              });
+  
+          })
+ 
+      </script>
+<% include ./main/footer %>

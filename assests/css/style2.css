@@ -1,0 +1,211 @@
+
+.titlem{
+    font-weight: bold;
+     font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left:10px;
+    color:#60C7C1 !important;
+    margin-right:3em;
+    font-family: 'McLaren', cursive;
+    }
+
+.footer {
+    
+    width: 100%;
+    padding:10px;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    text-align: center;
+  }
+  .text-center a{
+      color:#60C7C1;
+  }
+
+
+.product{
+	text-align:center;
+	margin:0 auto;
+	height:auto;
+	overflow:hidden;
+	margin-bottom:5em;
+	padding-top:1em;
+}
+.title{
+	font-family: 'Raleway', sans-serif;
+	font-family: 'Vibes', cursive;
+	font-family: 'Work Sans', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
+	margin-top:10px;
+	color:#EEAA9C;
+}
+.title2{
+	color:#60C7C1;
+	margin-top:-30;
+	font-family: 'Lalezar', cursive;
+}
+
+.pimg{
+	height:400px;
+	margin-bottom:22px;
+	margin-top:0px;
+	
+}
+.dimg{
+	width:150px;
+    height:150px;	
+}
+.ptitle{
+	font-family: 'Raleway', sans-serif;
+}
+.price{
+	font-family: 'Raleway', sans-serif;
+    font-family: 'Vibes', cursive;
+	color:#60C7C1;
+	}
+.shop{
+	font-family: 'Raleway', sans-serif;
+	font-family: 'Vibes', cursive;
+	font-family: 'Work Sans', sans-serif;
+	font-size:14px;
+	color:white;
+	background-color:#60C7C1;
+	padding:10px;
+	margin-top:-20px;
+	width:80%;
+}
+.details{
+	background-color:gray;
+	margin-top:2px;
+}
+	
+
+.myt{
+width: 97%;
+margin: 0 auto;
+}
+.myt thead {
+    background: #60C7C1;
+}
+.myt th{
+    background:#343A40;
+    color: white !important;
+    text-transform: capitalize;
+    border-right:1px solid white;
+	font-family: 'Mansalva', cursive;
+}
+
+.myt th, .myt td {
+    text-align: center;
+    color: #212121;
+}
+.myt td {
+	border:1px solid #CDCDCD;
+	font-family: 'Dosis', sans-serif;
+}
+.invert-image{
+	    width:30%;
+
+}
+td.invert-image a img {
+    width:40%;
+    margin: 0 auto;
+}
+.rem{
+	position:relative;
+}
+.styled-heading{
+	font-family: 'Josefin Sans', sans-serif;
+	color: #EEAA9C !important;
+	font-size: 45px;
+	margin: 0 0 20px !important;
+}
+.main-block{
+	padding: 80px 0;
+}
+h5{
+	font-family: 'Sulphur Point', sans-serif;
+font-family: 'Cairo', sans-serif;	
+}
+.featured-rating, .featured-rating-orange, .featured-rating-green {
+	bottom: 90px !important;
+}
+#myInput {
+	background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+	background-position: 10px 12px; /* Position the search icon */
+	background-repeat: no-repeat; /* Do not repeat the icon image */
+	width: 100%; /* Full-width */
+	font-size: 16px; /* Increase font-size */
+	padding: 12px 20px 12px 40px; /* Add some padding */
+	border: 1px solid #ddd; /* Add a grey border */
+	margin-bottom: 12px; /* Add some space below the input */
+  }
+  
+  #myTable {
+	border-collapse: collapse; /* Collapse borders */
+	width: 100%; /* Full-width */
+	border: 1px solid #ddd; /* Add a grey border */
+	font-size: 18px; /* Increase font-size */
+  }
+  
+  #myTable th, #myTable td {
+	text-align: left; /* Left-align text */
+	padding: 12px; /* Add padding */
+  }
+  
+  #myTable tr {
+	/* Add a bottom border to all table rows */
+	border-bottom: 1px solid #ddd; 
+  }
+  
+  #myTable tr.header, #myTable tr:hover {
+	/* Add a grey background color to the table header and on hover */
+	background-color: #f1f1f1;
+  }
+  .btno{
+	background: none;
+	color:inherit;
+	border:none;
+	padding:0;
+	font:inherit;
+	cursor:pointer;
+	outline:inherit
+  }
+  /* cart */
+  	
+
+table.timetable_sub {
+	width:100%;
+	margin:0 auto;
+}
+.timetable_sub thead {
+    background: #60C7C1;
+}
+.timetable_sub th{
+    background:#60C7C1;
+    color: whit !important;
+    text-transform: capitalize;
+    border-right:1px solid #A95832;
+	font-family: 'Mansalva', cursive;
+}
+
+.timetable_sub th, .timetable_sub td {
+    text-align: center;
+    padding: 7px;
+    font-size: 18px;
+    color: #212121;
+}
+.timetable_sub td {
+	border:1px solid #CDCDCD;
+}
+.invert-image{
+	    width:30%;
+
+}
+td.invert-image a img {
+    width:40%;
+    margin: 0 auto;
+}
+.rem{
+	position:relative;
+}

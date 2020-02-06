@@ -1,0 +1,100 @@
+<% include ./main/header %>
+<% include ./main/navbar %>
+<div class="auth">
+		<div class="modal-dialog modal-login ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="avatar">
+						<img src="avatar.png" alt="Avatar">
+					</div>				
+					<h4 class="modal-title">Member Login</h4>	
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+						<div class="form-group" id='emaildiv'>
+							<input type="email" class="form-control" id="email" placeholder="email" required="required">		
+						   
+								
+							
+						</div>
+						<div class="form-group" id="passdiv">
+							<input type="password" class="form-control" id="pass" placeholder="password" required="required">	
+						   
+							   
+						   
+						</div>        
+						<div class="form-group" id='other'>
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-btn" id='login'>Login</button>
+						   
+							   
+						</div>
+
+				</div>
+				<form action="/login" method="post" id="myform">
+					<input type="hidden" name="uid" id="uid">
+					
+				</form>
+				<div class="modal-footer">
+					<a href="#">Forgot Password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	 var firebaseConfig = {
+    apiKey: "AIzaSyABJiayCjHWZ3HzuVFAmIEtwznxnPhwcTY",
+    authDomain: "e-commerce-8b449.firebaseapp.com",
+    databaseURL: "https://e-commerce-8b449.firebaseio.com",
+    projectId: "e-commerce-8b449",
+    storageBucket: "e-commerce-8b449.appspot.com",
+    messagingSenderId: "780109649611",
+    appId: "1:780109649611:web:80a97448a539511b3dad4e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var dbObject=firebase.firestore();
+		var authObject=firebase.auth();
+		var storageObject=firebase.storage();
+
+		var email=document.getElementById("email");
+		var pass=document.getElementById("pass");
+		var signin=document.getElementById("login");
+
+		signin.addEventListener("click",function () {
+			authObject.signInWithEmailAndPassword(email.value,pass.value).then(function (user) {
+
+				//  console.log(user.id)
+				// location.replace("/")
+				firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+	// User logged in already or has just logged in.
+	document.getElementById('uid').value=user.uid
+	document.getElementById('myform').submit()
+
+	// console.log(user.uid);
+	// sessionStorage.setItem('uid',user.uid)
+	// location.replace("/loginrout")
+	
+  } else {
+    console.log("errr");
+  }
+});
+
+			}).catch(function (err) {
+
+        if(err.message=="The email address is badly formatted.")
+                document.getElementById('emaildiv').
+                innerHTML+='<p class="alert alert-danger" style="margin: 4px;font-size:12px;">'+err.message+'</p>';
+               else if(err.message=="Password should be at least 6 characters" || err.message=="The password must be 6 characters long or more.")
+               document.getElementById('passdiv').
+                innerHTML+='<p class="alert alert-danger" style="margin: 4px;font-size:12px;">'+err.message+'</p>';
+              else
+              document.getElementById('other').
+                innerHTML+='<p class="alert alert-danger" style="margin: 4px;font-size:12px;">'+err.message+'</p>';
+
+			});
+
+
+		})
+</script>
+<% include ./main/footer %>

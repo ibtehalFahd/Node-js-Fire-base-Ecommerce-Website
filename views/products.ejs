@@ -1,0 +1,86 @@
+
+<% include ./main/header %>
+<% include ./main/navbar %>
+
+<!--//END FIND PLACES -->
+<!--============================= FEATURED PLACES =============================-->
+<section class="main-block light-bg" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="styled-heading">
+                    <h2 class="title2" style="margin-bottom: 40px" >Featured DRAMA</h2>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="cat" value="<%=cat%>">
+        <div class="row" id='product'>
+        </div>
+        <!-- <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="featured-btn-wrap">
+                    <a href="#" class="btn btn-danger">VIEW ALL</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+<% include ./main/getProduct %>
+
+<script>
+var category=document.getElementById('cat').value
+console.log(category.length)
+ dbObject.collection("prodcuts").where("category", "==", category).get().then(function (rows) {
+     var i=0
+    //  var rows=[{"id":"1","name":"Knoewing bro","category":"drama","price":"300","count":"20","description":"this is my first best koran comedy drama","product_img":'2.jpg'},{"id":"1","name":"kn","category":"drama","price":"300","count":"20","description":"this is my first best koran comedy drama","product_img":'2.jpg'}]
+
+var dbody=document.getElementById('product')
+rows.forEach(function (row) {
+    i++
+  var doc=row.data();
+//   console.log(row.id)
+   
+
+
+  dbody.innerHTML+="<div class='col-md-4 featured-responsive'>"+
+                        "<div class='featured-place-wrap'>"+
+   
+                            "<img src='"+doc.product_img+"' class='img-fluid img' alt='#'>"+
+                             "<span class='featured-rating-green'>3.2</span>"+
+                              "<div class='featured-title-box'>"+
+                                     "<h6>"+doc.name+"</h6>"+
+                                     "<p>"+doc.category+"</p> <span>• </span>"+
+                                     "<p>"+doc.count+" Epsiods</p> <span> • </span>"+
+                                     "<p><span>"+doc.price+"RY</span></p>"+
+                                    //  "<p style='color:#F3F4F7'>"+doc.description+"</p>"+
+                                    "<div class='bottom-icons form-inline' >"+
+                                    "<form  method='post' style='margin-left: 20px; position: absolute; right:12px'>"+
+                                        "<input type='hidden' name='name' value='"+doc.name+"'>"+
+                                        "<input type='hidden' name='cat' value='"+doc.category+"'>"+
+                                       " <input type='hidden' name='count' value='"+doc.count+"'>"+
+                                       " <input type='hidden' name='price' value='"+doc.price+"'>"+
+                                       " <input type='hidden' name='desc' value='"+doc.description+"'>"+
+                                       " <input type='hidden' name='img' value='"+doc.product_img+"'>"+
+                                       " <button type='submit' formaction='/details' class='btno'><span class='ti-bookmark' title='more details'></span></button>"+
+                                       " <button type='submit' formaction='/like' class='btno'> <span class='ti-heart' title='like'></span></button>"+
+                                       " <button type='submit' formaction='/cart' class='btno'> <span class='ti-plus' title='add to cart'></span></button>"+
+                                     " </form> <div class='open-now'>OPEN NOW</div>"+
+                             "</div></div>"+
+    
+                        "</div>"+
+                    "</div>"
+});
+
+}).catch(function (err) {
+alert(err.message)
+
+})
+function editFun() {
+   document.getElementById('editForm').submit()
+}
+function delFun() {
+   document.getElementById('delForm').submit()
+}
+</script>
+<% include ./main/footer %>
